@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		DE1563F529D7636F00C0DA1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1563F429D7636F00C0DA1F /* AppDelegate.swift */; };
 		DE1563F729D7636F00C0DA1F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1563F629D7636F00C0DA1F /* SceneDelegate.swift */; };
-		DE1563F929D7636F00C0DA1F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1563F829D7636F00C0DA1F /* ViewController.swift */; };
+		DE1563F929D7636F00C0DA1F /* RecordingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1563F829D7636F00C0DA1F /* RecordingViewController.swift */; };
 		DE1563FC29D7636F00C0DA1F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE1563FA29D7636F00C0DA1F /* Main.storyboard */; };
 		DE1563FE29D7637000C0DA1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE1563FD29D7637000C0DA1F /* Assets.xcassets */; };
 		DE15640129D7637000C0DA1F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE1563FF29D7637000C0DA1F /* LaunchScreen.storyboard */; };
@@ -19,7 +19,7 @@
 		DE1563F129D7636F00C0DA1F /* Pitch-Perfect-iOS13.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pitch-Perfect-iOS13.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE1563F429D7636F00C0DA1F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE1563F629D7636F00C0DA1F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		DE1563F829D7636F00C0DA1F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DE1563F829D7636F00C0DA1F /* RecordingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingViewController.swift; sourceTree = "<group>"; };
 		DE1563FB29D7636F00C0DA1F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DE1563FD29D7637000C0DA1F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DE15640029D7637000C0DA1F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -58,13 +58,29 @@
 			children = (
 				DE1563F429D7636F00C0DA1F /* AppDelegate.swift */,
 				DE1563F629D7636F00C0DA1F /* SceneDelegate.swift */,
-				DE1563F829D7636F00C0DA1F /* ViewController.swift */,
-				DE1563FA29D7636F00C0DA1F /* Main.storyboard */,
+				DE20C2A229D7688A00390EC0 /* Controllers */,
+				DE20C2A329D7689B00390EC0 /* Views */,
 				DE1563FD29D7637000C0DA1F /* Assets.xcassets */,
 				DE1563FF29D7637000C0DA1F /* LaunchScreen.storyboard */,
 				DE15640229D7637000C0DA1F /* Info.plist */,
 			);
 			path = "Pitch-Perfect-iOS13";
+			sourceTree = "<group>";
+		};
+		DE20C2A229D7688A00390EC0 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DE1563F829D7636F00C0DA1F /* RecordingViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		DE20C2A329D7689B00390EC0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DE1563FA29D7636F00C0DA1F /* Main.storyboard */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,7 +154,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE1563F929D7636F00C0DA1F /* ViewController.swift in Sources */,
+				DE1563F929D7636F00C0DA1F /* RecordingViewController.swift in Sources */,
 				DE1563F529D7636F00C0DA1F /* AppDelegate.swift in Sources */,
 				DE1563F729D7636F00C0DA1F /* SceneDelegate.swift in Sources */,
 			);
