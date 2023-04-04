@@ -1,11 +1,8 @@
-//
-//  K.swift
-//  Pitch-Perfect-iOS13
-//
-//  Created by Omer Ifrah on 3/31/23.
-//
-
 import Foundation
 // String Constants
-
-var modulatorVC = "recToMod"
+struct K{
+   static let modulatorVC = "recToMod"
+   static let noPermissionRecordingStatus = "Microphone access needed"
+   static  let preRecordingStatus = "Tap to Record"
+   static let whileRecordingStatus = "Recording in progress..."
+}

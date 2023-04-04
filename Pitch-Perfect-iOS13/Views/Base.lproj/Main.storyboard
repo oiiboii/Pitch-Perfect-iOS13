@@ -19,10 +19,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="nS4-Me-9nP">
-                                <rect key="frame" x="126" y="307.66666666666669" width="141" height="236.66666666666669"/>
+                                <rect key="frame" x="44.333333333333343" y="307.66666666666669" width="304.66666666666663" height="236.66666666666669"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0we-Dc-fpr">
-                                        <rect key="frame" x="0.0" y="0.0" width="141" height="105"/>
+                                        <rect key="frame" x="81.666666666666657" y="0.0" width="141" height="105"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="105" id="Qek-hC-qbQ"/>
                                         </constraints>
@@ -36,15 +36,15 @@
                                             <action selector="recordButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Omm-VZ-Nzc"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to record" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OOl-1K-YwW">
-                                        <rect key="frame" x="11.33333333333335" y="122" width="118.66666666666669" height="24"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="recordingStatusLabel Placeholder" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OOl-1K-YwW">
+                                        <rect key="frame" x="0.0" y="122" width="304.66666666666669" height="24"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                         <size key="shadowOffset" width="0.0" height="0.0"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CeR-ck-mEt">
-                                        <rect key="frame" x="29.33333333333335" y="163" width="82.666666666666686" height="73.666666666666686"/>
+                                        <rect key="frame" x="111" y="163" width="82.666666666666686" height="73.666666666666686"/>
                                         <color key="tintColor" name="Color"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" imagePadding="0.0">
@@ -80,7 +80,7 @@
         <!--Modulator View Controller-->
         <scene sceneID="0kb-wS-XHY">
             <objects>
-                <viewController id="KgU-l6-ORY" userLabel="Modulator View Controller" sceneMemberID="viewController">
+                <viewController id="KgU-l6-ORY" userLabel="Modulator View Controller" customClass="ModulatorViewController" customModule="Pitch_Perfect_iOS13" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Cqe-E5-4Vj">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

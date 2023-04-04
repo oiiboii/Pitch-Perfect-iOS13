@@ -8,7 +8,7 @@
 import UIKit
 
 class ModulatorViewController: UIViewController {
-
+    var recordedAudioURL: URL!
     override func viewDidLoad() {
         super.viewDidLoad()
 
