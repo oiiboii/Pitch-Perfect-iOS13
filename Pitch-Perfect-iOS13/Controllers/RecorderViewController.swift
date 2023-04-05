@@ -93,7 +93,13 @@ extension RecorderViewController: AVAudioRecorderDelegate{
             print("Something went wrong...")
         }
     }
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == K.modulatorVC{
+            let modulatorVC = segue.destination as! ModulatorViewController
+            let recordedAudioURL = sender as! URL
+            modulatorVC.recordedAudioURL = recordedAudioURL
+        }
+    }
     func requestRecordPermission() {
         recordingSession = AVAudioSession.sharedInstance()
         do {

@@ -8,6 +8,13 @@
 import UIKit
 
 class ModulatorViewController: UIViewController {
+    @IBOutlet weak var highPitchButton: UIButton!
+    @IBOutlet weak var lowPitchButton: UIButton!
+    @IBOutlet weak var ecoButton: UIButton!
+    @IBOutlet weak var reverbButton: UIButton!
+    @IBOutlet weak var fastButton: UIButton!
+    
+    @IBOutlet weak var slowButton: UIButton!
     var recordedAudioURL: URL!
     override func viewDidLoad() {
         super.viewDidLoad()
