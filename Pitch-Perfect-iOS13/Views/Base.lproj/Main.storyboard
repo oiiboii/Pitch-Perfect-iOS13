@@ -87,7 +87,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="s7v-Gd-aZd">
-                                <rect key="frame" x="77.333333333333314" y="266.33333333333337" width="275.33333333333331" height="399.33333333333337"/>
+                                <rect key="frame" x="77.333333333333343" y="266.33333333333337" width="275.33333333333326" height="399.33333333333337"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="R3y-vE-maK">
                                         <rect key="frame" x="0.0" y="0.0" width="275.33333333333331" height="316.33333333333331"/>
@@ -95,26 +95,26 @@
                                             <stackView opaque="NO" contentMode="scaleAspectFit" distribution="fillEqually" spacing="75" translatesAutoresizingMaskIntoConstraints="NO" id="kTO-Ir-eyl">
                                                 <rect key="frame" x="0.0" y="0.0" width="275.33333333333331" height="100"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ogB-kB-NM1">
+                                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N9d-gv-edH">
                                                         <rect key="frame" x="0.0" y="0.0" width="100.33333333333333" height="100"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" secondItem="ogB-kB-NM1" secondAttribute="height" multiplier="1:1" id="CDU-Q0-YZt"/>
+                                                            <constraint firstAttribute="width" secondItem="N9d-gv-edH" secondAttribute="height" multiplier="1:1" id="q3a-hr-YwF"/>
                                                         </constraints>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                        <state key="normal" image="LowPitch"/>
+                                                        <state key="normal" image="Slow"/>
                                                         <connections>
-                                                            <action selector="playSoundButtonPressed:" destination="KgU-l6-ORY" eventType="touchUpInside" id="SPG-Wd-dXA"/>
+                                                            <action selector="playSoundButtonPressed:" destination="KgU-l6-ORY" eventType="touchUpInside" id="5FD-VH-p4L"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IJG-6e-XzU">
+                                                    <button opaque="NO" tag="1" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cSS-mC-KLw">
                                                         <rect key="frame" x="175.33333333333331" y="0.0" width="100" height="100"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" secondItem="IJG-6e-XzU" secondAttribute="height" multiplier="1:1" id="Ldg-DW-utq"/>
+                                                            <constraint firstAttribute="width" secondItem="cSS-mC-KLw" secondAttribute="height" multiplier="1:1" id="IAc-aK-Jdo"/>
                                                         </constraints>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                        <state key="normal" image="Echo"/>
+                                                        <state key="normal" image="Fast"/>
                                                         <connections>
-                                                            <action selector="playSoundButtonPressed:" destination="KgU-l6-ORY" eventType="touchUpInside" id="0UQ-M0-R2b"/>
+                                                            <action selector="playSoundButtonPressed:" destination="KgU-l6-ORY" eventType="touchUpInside" id="7iv-ml-1bP"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -122,7 +122,7 @@
                                             <stackView opaque="NO" contentMode="scaleAspectFit" distribution="fillEqually" spacing="75" translatesAutoresizingMaskIntoConstraints="NO" id="MuU-6a-jbp">
                                                 <rect key="frame" x="0.0" y="108" width="275.33333333333331" height="100.33333333333331"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oky-lp-STM">
+                                                    <button opaque="NO" tag="2" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oky-lp-STM">
                                                         <rect key="frame" x="0.0" y="0.0" width="100.33333333333333" height="100.33333333333333"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="Oky-lp-STM" secondAttribute="height" multiplier="1:1" id="kXN-dV-RBc"/>
@@ -133,15 +133,15 @@
                                                             <action selector="playSoundButtonPressed:" destination="KgU-l6-ORY" eventType="touchUpInside" id="rvq-gY-AGV"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N9d-gv-edH">
+                                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ogB-kB-NM1">
                                                         <rect key="frame" x="175.33333333333331" y="0.0" width="100" height="100.33333333333333"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" secondItem="N9d-gv-edH" secondAttribute="height" multiplier="1:1" id="q3a-hr-YwF"/>
+                                                            <constraint firstAttribute="width" secondItem="ogB-kB-NM1" secondAttribute="height" multiplier="1:1" id="CDU-Q0-YZt"/>
                                                         </constraints>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                        <state key="normal" image="Slow"/>
+                                                        <state key="normal" image="LowPitch"/>
                                                         <connections>
-                                                            <action selector="playSoundButtonPressed:" destination="KgU-l6-ORY" eventType="touchUpInside" id="5FD-VH-p4L"/>
+                                                            <action selector="playSoundButtonPressed:" destination="KgU-l6-ORY" eventType="touchUpInside" id="SPG-Wd-dXA"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -149,18 +149,18 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="75" translatesAutoresizingMaskIntoConstraints="NO" id="ZXF-ob-TMX">
                                                 <rect key="frame" x="0.0" y="216.33333333333337" width="275.33333333333331" height="100"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cSS-mC-KLw">
+                                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IJG-6e-XzU">
                                                         <rect key="frame" x="0.0" y="0.0" width="100.33333333333333" height="100"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" secondItem="cSS-mC-KLw" secondAttribute="height" multiplier="1:1" id="IAc-aK-Jdo"/>
+                                                            <constraint firstAttribute="width" secondItem="IJG-6e-XzU" secondAttribute="height" multiplier="1:1" id="Ldg-DW-utq"/>
                                                         </constraints>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                        <state key="normal" image="Fast"/>
+                                                        <state key="normal" image="Echo"/>
                                                         <connections>
-                                                            <action selector="playSoundButtonPressed:" destination="KgU-l6-ORY" eventType="touchUpInside" id="7iv-ml-1bP"/>
+                                                            <action selector="playSoundButtonPressed:" destination="KgU-l6-ORY" eventType="touchUpInside" id="0UQ-M0-R2b"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8hT-fH-UQP">
+                                                    <button opaque="NO" tag="5" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8hT-fH-UQP">
                                                         <rect key="frame" x="175.33333333333331" y="0.0" width="100" height="100"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="8hT-fH-UQP" secondAttribute="height" multiplier="1:1" id="i9w-rY-Ghg"/>
@@ -186,6 +186,9 @@
                                                 </constraints>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" image="Stop"/>
+                                                <connections>
+                                                    <action selector="stopButtonTapped:" destination="KgU-l6-ORY" eventType="touchUpInside" id="fmc-Ol-XIC"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -203,7 +206,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="8FL-cv-Tfp"/>
                     <connections>
-                        <outlet property="ecoButton" destination="IJG-6e-XzU" id="GOV-2b-Hh4"/>
+                        <outlet property="echoButton" destination="IJG-6e-XzU" id="GOV-2b-Hh4"/>
                         <outlet property="fastButton" destination="cSS-mC-KLw" id="lAa-gl-DFE"/>
                         <outlet property="highPitchButton" destination="Oky-lp-STM" id="my9-h5-EtI"/>
                         <outlet property="lowPitchButton" destination="ogB-kB-NM1" id="AUT-ca-271"/>

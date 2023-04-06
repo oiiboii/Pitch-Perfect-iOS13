@@ -22,7 +22,7 @@ class RecorderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        recordingStatusLabel.text = K.preRecordingStatus
+        recordingStatusLabel.text = K.UILabelText.preRecordingStatus
         stopButton.isEnabled = false //stop button is disabled on launch
         requestRecordPermission() //request poermission to access the mic
     }
@@ -51,7 +51,7 @@ class RecorderViewController: UIViewController {
     @IBAction func stopButtonTapped(_ sender: UIButton) {
         stopButton.isEnabled = false
         recordButton.isEnabled = true //change button status
-        recordingStatusLabel.text = K.preRecordingStatus
+        recordingStatusLabel.text = K.UILabelText.preRecordingStatus
         audioRecorder.stop()
         let audioSession = AVAudioSession.sharedInstance()
         try! audioSession.setActive(false)
@@ -63,19 +63,19 @@ class RecorderViewController: UIViewController {
     func startRecording(){
         recordButton.isEnabled = false
         stopButton.isEnabled = true
-        recordingStatusLabel.text = K.whileRecordingStatus //change label text
+        recordingStatusLabel.text = K.UILabelText.whileRecordingStatus //change label text
         print("rec Tapped") //debug statement
     }
     
     func askUserToChangePermission(){
-        self.recordingStatusLabel.text = K.noPermissionRecordingStatus
+        self.recordingStatusLabel.text = K.UILabelText.noPermissionRecordingStatus
         self.recordButton.isEnabled = false
 
         //THIS ISN'T IDEAL FEEDBACK. SHOULD USE NOTIFICATIONS.
         // resetting UI after 1.0 seconds so that app could continuously give the user feedback
         Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { timer in
             self.recordButton.isEnabled = true
-            self.recordingStatusLabel.text = K.preRecordingStatus
+            self.recordingStatusLabel.text = K.UILabelText.preRecordingStatus
         }
     }
 }
@@ -88,13 +88,13 @@ extension RecorderViewController: AVAudioRecorderDelegate{
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         if flag{
             print("finishedRecording") //debug
-            performSegue(withIdentifier: K.modulatorVC, sender: audioRecorder.url)
+            performSegue(withIdentifier: K.Display.modulatorVC, sender: audioRecorder.url)
         } else {
             print("Something went wrong...")
         }
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == K.modulatorVC{
+        if segue.identifier == K.Display.modulatorVC{
             let modulatorVC = segue.destination as! ModulatorViewController
             let recordedAudioURL = sender as! URL
             modulatorVC.recordedAudioURL = recordedAudioURL
