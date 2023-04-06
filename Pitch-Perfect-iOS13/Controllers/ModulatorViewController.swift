@@ -18,25 +18,20 @@ class ModulatorViewController: UIViewController {
     var recordedAudioURL: URL!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setButtonSize()
-
-        highPitchButton.contentMode = .center
-        highPitchButton.imageView?.contentMode = .scaleAspectFit
+        stopButton.isEnabled = false
         // Do any additional setup after loading the view.
     }
     
-    // looping through each button to set it's size and alignment so the images won't stretch
-    func setButtonSize(){
-        let buttons = [highPitchButton, lowPitchButton, ecoButton, reverbButton, fastButton, slowButton, stopButton]
+    //MARK: - IBActions
+    @IBAction func playSoundButtonPressed(_ sender: UIButton){
         
-        for button in buttons{
-            if let button{
-                button.contentMode = .center
-                button.imageView?.contentMode = .scaleAspectFit
-            }
-        }
     }
+    
+    @IBAction func stopButtonTapped(_ sender: UIButton) {
+        print("stop Tapped")
+    }
+    
+    //MARK: - UI Functions
 
     /*
     // MARK: - Navigation

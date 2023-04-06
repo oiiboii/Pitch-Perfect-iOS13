@@ -100,6 +100,8 @@ extension RecorderViewController: AVAudioRecorderDelegate{
             modulatorVC.recordedAudioURL = recordedAudioURL
         }
     }
+    
+    //MARK: - Non-UI related functions
     func requestRecordPermission() {
         recordingSession = AVAudioSession.sharedInstance()
         do {
