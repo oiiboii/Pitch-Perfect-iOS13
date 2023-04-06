@@ -1,16 +1,19 @@
 import Foundation
-// String Constants
+
 struct K{
     
-    struct Display{
+    //ui views identifier names
+    struct Views{
         static let modulatorVC = "recToMod"
     }
-    struct UILabelText{
+    
+    //ui text labels content
+    struct TextLabels{
         static let noPermissionRecordingStatus = "Microphone access needed"
         static  let preRecordingStatus = "Tap to Record"
         static let whileRecordingStatus = "Recording in progress..."
     }
-    
+    //debugging error messages
     struct Alerts {
         static let DismissAlert = "Dismiss"
         static let RecordingDisabledTitle = "Recording Disabled"

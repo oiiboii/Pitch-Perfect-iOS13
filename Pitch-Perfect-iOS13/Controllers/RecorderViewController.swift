@@ -14,7 +14,8 @@ class RecorderViewController: UIViewController {
     var audioRecorder: AVAudioRecorder! //delegate instance - think of it as an "intern".
     var permission: Bool = false
     var recordingSession: AVAudioSession!
-
+    var recorderBrain = RecorderBrain()
+    
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var recordingStatusLabel: UILabel!
     @IBOutlet weak var stopButton: UIButton!
@@ -22,15 +23,15 @@ class RecorderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        recordingStatusLabel.text = K.UILabelText.preRecordingStatus
+        recordingStatusLabel.text = K.TextLabels.preRecordingStatus //initiates statusLabel
         stopButton.isEnabled = false //stop button is disabled on launch
-        requestRecordPermission() //request poermission to access the mic
+        recorderBrain.requestRecordPermission() //request poermission to access the mic
     }
     
     //MARK: - IBActions
     @IBAction func recordButtonTapped(_ sender: UIButton) {
         // shortened if statement: if permission to access mic was granted - startRecording.
-        permission ? startRecording(): askUserToChangePermission()
+        recorderBrain.isMicrophonePermissionGranted() ? startRecording(): askUserToChangePermission()
         
         let dirPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
         let recordingName = "recordedVoice.wav"
@@ -51,7 +52,7 @@ class RecorderViewController: UIViewController {
     @IBAction func stopButtonTapped(_ sender: UIButton) {
         stopButton.isEnabled = false
         recordButton.isEnabled = true //change button status
-        recordingStatusLabel.text = K.UILabelText.preRecordingStatus
+        recordingStatusLabel.text = K.TextLabels.preRecordingStatus
         audioRecorder.stop()
         let audioSession = AVAudioSession.sharedInstance()
         try! audioSession.setActive(false)
@@ -63,19 +64,19 @@ class RecorderViewController: UIViewController {
     func startRecording(){
         recordButton.isEnabled = false
         stopButton.isEnabled = true
-        recordingStatusLabel.text = K.UILabelText.whileRecordingStatus //change label text
+        recordingStatusLabel.text = K.TextLabels.whileRecordingStatus //change label text
         print("rec Tapped") //debug statement
     }
     
     func askUserToChangePermission(){
-        self.recordingStatusLabel.text = K.UILabelText.noPermissionRecordingStatus
+        self.recordingStatusLabel.text = K.TextLabels.noPermissionRecordingStatus
         self.recordButton.isEnabled = false
 
         //THIS ISN'T IDEAL FEEDBACK. SHOULD USE NOTIFICATIONS.
         // resetting UI after 1.0 seconds so that app could continuously give the user feedback
         Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { timer in
             self.recordButton.isEnabled = true
-            self.recordingStatusLabel.text = K.UILabelText.preRecordingStatus
+            self.recordingStatusLabel.text = K.TextLabels.preRecordingStatus
         }
     }
 }
@@ -88,35 +89,16 @@ extension RecorderViewController: AVAudioRecorderDelegate{
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         if flag{
             print("finishedRecording") //debug
-            performSegue(withIdentifier: K.Display.modulatorVC, sender: audioRecorder.url)
+            performSegue(withIdentifier: K.Views.modulatorVC, sender: audioRecorder.url)
         } else {
             print("Something went wrong...")
         }
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == K.Display.modulatorVC{
+        if segue.identifier == K.Views.modulatorVC{
             let modulatorVC = segue.destination as! ModulatorViewController
             let recordedAudioURL = sender as! URL
             modulatorVC.recordedAudioURL = recordedAudioURL
         }
     }
-    
-    //MARK: - Non-UI related functions
-    func requestRecordPermission() {
-        recordingSession = AVAudioSession.sharedInstance()
-        do {
-            AVAudioSession.sharedInstance().requestRecordPermission { granted in
-                if granted {
-                    print("permission granted")
-                    self.permission = true
-                } else {
-                    print("permission isn't granted")
-                    // Present message to user indicating that recording
-                    // can't be performed until they change their preference
-                    // under Settings -> Privacy -> Microphone
-                }
-            }
-        }
-    }
 }
-
