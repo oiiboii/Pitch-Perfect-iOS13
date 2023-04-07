@@ -35,4 +35,34 @@ struct RecorderBrain{
     func isMicrophonePermissionGranted() -> Bool {
         return AVAudioSession.sharedInstance().recordPermission == .granted
     }
+    
+    func startRecording(){
+        audioRecorder.isMeteringEnabled = true
+        audioRecorder.prepareToRecord()
+        audioRecorder.record()
+    }
+    func stopRecoding(){
+        audioRecorder.stop()
+        let audioSession = AVAudioSession.sharedInstance()
+        try! audioSession.setActive(false)
+    }
+    
+    mutating func prepareForAudioRecording(){
+        let filePath = getFilePath(for: K.Files.recordingFileName)
+        let session = AVAudioSession.sharedInstance()
+        try! session.setCategory(AVAudioSession.Category.playAndRecord, options: .defaultToSpeaker)
+        try! audioRecorder = AVAudioRecorder(url: filePath, settings: [:])
+    }
+    
+
+    private func getFilePath(for fileName: String) -> URL{
+        let audioFilename = getDocumentsDirectory().appendingPathComponent(fileName)
+        return audioFilename
+    }
+    
+    private func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+    
 }

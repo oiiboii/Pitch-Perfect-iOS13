@@ -13,6 +13,12 @@ struct K{
         static  let preRecordingStatus = "Tap to Record"
         static let whileRecordingStatus = "Recording in progress..."
     }
+    
+    //file
+    struct Files{
+        static let recordingFileName = "recordingVoice.wav"
+    }
+    
     //debugging error messages
     struct Alerts {
         static let DismissAlert = "Dismiss"

@@ -11,9 +11,6 @@ import AVFoundation
 //MARK: - RecorderViewController
 class RecorderViewController: UIViewController {
     
-    var audioRecorder: AVAudioRecorder! //delegate instance - think of it as an "intern".
-    var permission: Bool = false
-    var recordingSession: AVAudioSession!
     var recorderBrain = RecorderBrain()
     
     @IBOutlet weak var recordButton: UIButton!
@@ -23,63 +20,53 @@ class RecorderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        recordingStatusLabel.text = K.TextLabels.preRecordingStatus //initiates statusLabel
-        stopButton.isEnabled = false //stop button is disabled on launch
+        displayPreRecordingUI()
         recorderBrain.requestRecordPermission() //request poermission to access the mic
     }
     
     //MARK: - IBActions
     @IBAction func recordButtonTapped(_ sender: UIButton) {
-        // shortened if statement: if permission to access mic was granted - startRecording.
-        recorderBrain.isMicrophonePermissionGranted() ? startRecording(): askUserToChangePermission()
+        // shortened if statement: UI functionality and feedback dependant on whether user granted permission.
+        recorderBrain.isMicrophonePermissionGranted() ? displayWhileRecordingUI(): displayNoPermissionUI()
         
-        let dirPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
-        let recordingName = "recordedVoice.wav"
-        let pathArray = [dirPath, recordingName]
-        let filePath = URL(string: pathArray.joined(separator: "/"))
-        
-        let session = AVAudioSession.sharedInstance()
-        try! session.setCategory(AVAudioSession.Category.playAndRecord, options: .defaultToSpeaker)
-        try! audioRecorder = AVAudioRecorder(url: filePath!, settings: [:])
-        
-        audioRecorder.delegate = self // designates the delegate for AVAudio
-        
-        audioRecorder.isMeteringEnabled = true
-        audioRecorder.prepareToRecord()
-        audioRecorder.record()
+        recorderBrain.prepareForAudioRecording() // sets filepath+name and initiates audio session
+        recorderBrain.audioRecorder.delegate = self //initializes viewcontroller as the delegate
+        recorderBrain.startRecording() //starts recording
     }
     
     @IBAction func stopButtonTapped(_ sender: UIButton) {
-        stopButton.isEnabled = false
-        recordButton.isEnabled = true //change button status
-        recordingStatusLabel.text = K.TextLabels.preRecordingStatus
-        audioRecorder.stop()
-        let audioSession = AVAudioSession.sharedInstance()
-        try! audioSession.setActive(false)
+        displayPreRecordingUI()
+        recorderBrain.stopRecoding()
         print("stop Tapped")
     }
     
     //MARK: - UI Update Functions
+    func displayPreRecordingUI(){
+        stopButton.isEnabled = false
+        recordButton.isEnabled = true //change button status
+        recordingStatusLabel.text = K.TextLabels.preRecordingStatus
+    }
     
-    func startRecording(){
+    func displayWhileRecordingUI(){
         recordButton.isEnabled = false
         stopButton.isEnabled = true
         recordingStatusLabel.text = K.TextLabels.whileRecordingStatus //change label text
         print("rec Tapped") //debug statement
     }
     
-    func askUserToChangePermission(){
+    func displayNoPermissionUI(){
         self.recordingStatusLabel.text = K.TextLabels.noPermissionRecordingStatus
         self.recordButton.isEnabled = false
 
         //THIS ISN'T IDEAL FEEDBACK. SHOULD USE NOTIFICATIONS.
         // resetting UI after 1.0 seconds so that app could continuously give the user feedback
         Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { timer in
-            self.recordButton.isEnabled = true
-            self.recordingStatusLabel.text = K.TextLabels.preRecordingStatus
+            self.displayPreRecordingUI()
+
         }
     }
 }
+
 
 //MARK: - Delegate Extension
 // assigns the AVAudioRecorderDelegate Protocol to the RecordViewController - this effectively designates the ViewController as the "boss" to the audioRecorder.
@@ -89,7 +76,7 @@ extension RecorderViewController: AVAudioRecorderDelegate{
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         if flag{
             print("finishedRecording") //debug
-            performSegue(withIdentifier: K.Views.modulatorVC, sender: audioRecorder.url)
+            performSegue(withIdentifier: K.Views.modulatorVC, sender: recorderBrain.audioRecorder.url)
         } else {
             print("Something went wrong...")
         }
