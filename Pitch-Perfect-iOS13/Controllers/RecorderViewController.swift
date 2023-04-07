@@ -30,7 +30,7 @@ class RecorderViewController: UIViewController {
         recorderBrain.isMicrophonePermissionGranted() ? displayWhileRecordingUI(): displayNoPermissionUI()
         
         recorderBrain.prepareForAudioRecording() // sets filepath+name and initiates audio session
-        recorderBrain.audioRecorder.delegate = self //initializes viewcontroller as the delegate
+        recorderBrain.audioRecorder.delegate = self //initializes viewcontroller as the delegate. the audioRecorder is the "intern" and it waits to be told what to do by the ViewController.
         recorderBrain.startRecording() //starts recording
     }
     

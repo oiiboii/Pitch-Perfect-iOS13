@@ -60,7 +60,6 @@ class ModulatorViewController: UIViewController {
         stopAudio()
     }
 }
-
     
     //MARK: - UI Functions
     extension ModulatorViewController: AVAudioPlayerDelegate {
