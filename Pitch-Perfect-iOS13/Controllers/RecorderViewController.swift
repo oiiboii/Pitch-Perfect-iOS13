@@ -37,7 +37,7 @@ class RecorderViewController: UIViewController {
     //MARK: - IBAction functions
     @IBAction func recordButtonTapped(_ sender: UIButton) {
         // shortened if statement: UI functionality and feedback dependant on whether user granted permission.
-        recorderBrain.isMicrophonePermissionGranted() ? configureUI(isRecording: true) : configureUI(isRecording: false)
+        recorderBrain.isMicrophonePermissionGranted() ? configureUI(isRecording: true) : requestMicrophoneAccess()
         recorderBrain.prepareForAudioRecording() // sets filepath+name and initiates audio session
         recorderBrain.audioRecorder.delegate = self //initializes viewcontroller as the delegate. the audioRecorder is the "intern" and it waits to be told what to do by the ViewController.
         recorderBrain.startRecording() //starts recording
@@ -55,7 +55,21 @@ class RecorderViewController: UIViewController {
         recordButton.isEnabled = !isRecording // to enable the button
         recordingStatusLabel.text = isRecording ? K.TextLabels.whileRecordingStatus : K.TextLabels.preRecordingStatus
     }
+    
+    func requestMicrophoneAccess() {
+        let alert = UIAlertController(
+            title: "Microphone Access Required",
+            message: "Please grant microphone access to use this app.",
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Settings", style: .cancel) { _ in
+            UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+        })
+        present(alert, animated: true, completion: nil)
+    }
 }
+
 //MARK: - Delegate Extension
 // assigns the AVAudioRecorderDelegate Protocol to the RecordViewController - this effectively designates the ViewController as the "boss" to the audioRecorder.
 extension RecorderViewController: AVAudioRecorderDelegate{
