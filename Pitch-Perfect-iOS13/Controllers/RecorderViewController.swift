@@ -37,8 +37,7 @@ class RecorderViewController: UIViewController {
     //MARK: - IBAction functions
     @IBAction func recordButtonTapped(_ sender: UIButton) {
         // shortened if statement: UI functionality and feedback dependant on whether user granted permission.
-        recorderBrain.isMicrophonePermissionGranted() ? configureUI(isRecording: true):  displayNoPermissionUI()
-        
+        recorderBrain.isMicrophonePermissionGranted() ? configureUI(isRecording: true) : configureUI(isRecording: false)
         recorderBrain.prepareForAudioRecording() // sets filepath+name and initiates audio session
         recorderBrain.audioRecorder.delegate = self //initializes viewcontroller as the delegate. the audioRecorder is the "intern" and it waits to be told what to do by the ViewController.
         recorderBrain.startRecording() //starts recording
@@ -50,27 +49,13 @@ class RecorderViewController: UIViewController {
         print("stop Tapped")
     }
     
+    //MARK: - UI Update Functions
     func configureUI(isRecording: Bool) {
         stopButton.isEnabled = isRecording // to disable the button
         recordButton.isEnabled = !isRecording // to enable the button
         recordingStatusLabel.text = isRecording ? K.TextLabels.whileRecordingStatus : K.TextLabels.preRecordingStatus
-       }
-    
-    //MARK: - UI Update Functions
-    func displayNoPermissionUI(){
-        self.recordingStatusLabel.text = K.TextLabels.noPermissionRecordingStatus
-        self.recordButton.isEnabled = false
-
-        //THIS ISN'T IDEAL FEEDBACK. SHOULD USE NOTIFICATIONS.
-        // resetting UI after 1.0 seconds so that app could continuously give the user feedback
-        Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { timer in
-            self.configureUI(isRecording: false)
-
-        }
     }
 }
-
-
 //MARK: - Delegate Extension
 // assigns the AVAudioRecorderDelegate Protocol to the RecordViewController - this effectively designates the ViewController as the "boss" to the audioRecorder.
 extension RecorderViewController: AVAudioRecorderDelegate{

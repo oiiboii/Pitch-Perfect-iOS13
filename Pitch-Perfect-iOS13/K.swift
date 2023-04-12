@@ -9,7 +9,6 @@ struct K{
     
     //ui text labels content
     struct TextLabels{
-        static let noPermissionRecordingStatus = "Microphone access needed"
         static  let preRecordingStatus = "Tap to Record"
         static let whileRecordingStatus = "Recording in progress..."
     }
