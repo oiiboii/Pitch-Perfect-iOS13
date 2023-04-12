@@ -5,29 +5,39 @@
 //  Created by Omer Ifrah on 3/31/23.
 //
 
+/* Outlets
+ Variables/Constants
+ Lifecycle methods
+ Private methods
+ Delegate methods
+ Extensions
+ */
+
 import UIKit
 import AVFoundation
 
-//MARK: - RecorderViewController
 class RecorderViewController: UIViewController {
     
-    var recorderBrain = RecorderBrain()
-    
+    //MARK: - Outlets
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var recordingStatusLabel: UILabel!
     @IBOutlet weak var stopButton: UIButton!
     
+    //MARK: - Variables
+    var recorderBrain = RecorderBrain()
+    
+    //MARK: - lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        displayPreRecordingUI()
+        configureUI(isRecording: false)
         recorderBrain.requestRecordPermission() //request poermission to access the mic
     }
     
-    //MARK: - IBActions
+    //MARK: - IBAction functions
     @IBAction func recordButtonTapped(_ sender: UIButton) {
         // shortened if statement: UI functionality and feedback dependant on whether user granted permission.
-        recorderBrain.isMicrophonePermissionGranted() ? displayWhileRecordingUI(): displayNoPermissionUI()
+        recorderBrain.isMicrophonePermissionGranted() ? configureUI(isRecording: true):  displayNoPermissionUI()
         
         recorderBrain.prepareForAudioRecording() // sets filepath+name and initiates audio session
         recorderBrain.audioRecorder.delegate = self //initializes viewcontroller as the delegate. the audioRecorder is the "intern" and it waits to be told what to do by the ViewController.
@@ -35,25 +45,18 @@ class RecorderViewController: UIViewController {
     }
     
     @IBAction func stopButtonTapped(_ sender: UIButton) {
-        displayPreRecordingUI()
+        configureUI(isRecording: false)
         recorderBrain.stopRecoding()
         print("stop Tapped")
     }
     
+    func configureUI(isRecording: Bool) {
+        stopButton.isEnabled = isRecording // to disable the button
+        recordButton.isEnabled = !isRecording // to enable the button
+        recordingStatusLabel.text = isRecording ? K.TextLabels.whileRecordingStatus : K.TextLabels.preRecordingStatus
+       }
+    
     //MARK: - UI Update Functions
-    func displayPreRecordingUI(){
-        stopButton.isEnabled = false
-        recordButton.isEnabled = true //change button status
-        recordingStatusLabel.text = K.TextLabels.preRecordingStatus
-    }
-    
-    func displayWhileRecordingUI(){
-        recordButton.isEnabled = false
-        stopButton.isEnabled = true
-        recordingStatusLabel.text = K.TextLabels.whileRecordingStatus //change label text
-        print("rec Tapped") //debug statement
-    }
-    
     func displayNoPermissionUI(){
         self.recordingStatusLabel.text = K.TextLabels.noPermissionRecordingStatus
         self.recordButton.isEnabled = false
@@ -61,7 +64,7 @@ class RecorderViewController: UIViewController {
         //THIS ISN'T IDEAL FEEDBACK. SHOULD USE NOTIFICATIONS.
         // resetting UI after 1.0 seconds so that app could continuously give the user feedback
         Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { timer in
-            self.displayPreRecordingUI()
+            self.configureUI(isRecording: false)
 
         }
     }

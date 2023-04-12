@@ -5,10 +5,12 @@
 //  Created by Omer Ifrah on 3/31/23.
 //
 
+
 import UIKit
 import AVFAudio
 
 class ModulatorViewController: UIViewController {
+    
     @IBOutlet weak var highPitchButton: UIButton!
     @IBOutlet weak var lowPitchButton: UIButton!
     @IBOutlet weak var echoButton: UIButton!
@@ -34,6 +36,12 @@ class ModulatorViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureUI(.notPlaying)
+    }
+    
+    //stops audio if user goes back to the recorder screen before the audio finished playing
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        stopAudio()
     }
     
     //MARK: - IBActions
